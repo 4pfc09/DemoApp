@@ -7,7 +7,8 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 public class PageViewModel extends ViewModel {
-
+    //++
+    private int currentIndex = -1;
 
 
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
@@ -20,12 +21,18 @@ public class PageViewModel extends ViewModel {
 
     public void setIndex(int index) {
         mIndex.setValue(index);
+        //++
+        currentIndex = index;
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 
+    //++
 
 
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
 }

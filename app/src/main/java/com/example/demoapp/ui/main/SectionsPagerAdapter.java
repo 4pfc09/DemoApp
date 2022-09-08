@@ -1,6 +1,7 @@
 package com.example.demoapp.ui.main;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -29,6 +30,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        Log.println(Log.DEBUG, "Cabinas_Adapter getItem", String.valueOf(position));
         return PlaceholderFragment.newInstance(position + 1);
     }
 

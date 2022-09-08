@@ -1,6 +1,5 @@
 package com.example.demoapp.ui.main;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,13 +8,12 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.demoapp.R;
 import com.example.demoapp.adapters.ContentAdapter;
 import com.example.demoapp.databinding.FragmentBuiltInTabbedBinding;
 
@@ -28,6 +26,8 @@ public class PlaceholderFragment extends Fragment {
 
     private PageViewModel pageViewModel;
     private FragmentBuiltInTabbedBinding binding;
+    //++
+    private int currentIndex = 1;
 
     public static PlaceholderFragment newInstance(int index) {
         PlaceholderFragment fragment = new PlaceholderFragment();
@@ -41,11 +41,11 @@ public class PlaceholderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageViewModel = new ViewModelProvider(this).get(PageViewModel.class);
-        int index = 1;
+
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
+            currentIndex = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setIndex(index);
+        pageViewModel.setIndex(currentIndex);
     }
 
     @Override
@@ -59,20 +59,14 @@ public class PlaceholderFragment extends Fragment {
         final TextView textView = binding.sectionLabel;
         //++
         final GridView gridView = binding.griViewdBuiltInFragment;
-        //++
-        int index = -1;
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
-        }
-        Log.println(Log.DEBUG,"debug", "El index es: "+index);
-        gridView.setAdapter(new ContentAdapter(container.getContext()));
+        gridView.setAdapter(new ContentAdapter(container.getContext(), this.currentIndex));
 
         pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-
-
+                //++
+                Log.println(Log.DEBUG, "debug fragment", String.valueOf(pageViewModel.getCurrentIndex()));
             }
         });
         return root;

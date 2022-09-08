@@ -19,17 +19,18 @@ public class ContentAdapter extends BaseAdapter {
     IContentsService contentsService;
     List<Content> contentList;
     private Context context;
+    private int cabinaId;
 
 
     public ContentAdapter(){
         contentsService = new ContentsService();
     }
-    public ContentAdapter(Context context) {
+    public ContentAdapter(Context context, int cabinaId) {
         contentsService = new ContentsService();
         this.context = context;
-        //TODO necesito obtener el índice de la tab y en función de eso buscar los contenidos
-        //No sé si es conveniente hacerlo aquí...
-        contentList = contentsService.getContentsById(1);
+        this.cabinaId= cabinaId;
+
+        contentList = contentsService.getContentsById(cabinaId);
     }
 
     @Override

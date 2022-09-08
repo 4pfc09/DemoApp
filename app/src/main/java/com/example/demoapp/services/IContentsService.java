@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IContentsService {
 
-    List<Content> getContentsById(int id);
+    List<Content> getContentsById(int cabinaId);
 
 
 }

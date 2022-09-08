@@ -19,10 +19,10 @@ public class ContentsService implements IContentsService {
     }
 
     @Override
-    public List<Content> getContentsById(int id) {
+    public List<Content> getContentsById(int cabinaId) {
         this.contents = new ArrayList<>();
 
-        switch (id) {
+        switch (cabinaId) {
             case 1:
                 this.contents.add(new Content(1L, "China", R.drawable.china));
                 this.contents.add(new Content(2L, "Dog", R.drawable.dog));

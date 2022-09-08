@@ -23,7 +23,7 @@
     <GridView
         android:id="@+id/griViewdBuiltInFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:background="@color/purple_200"
        android:horizontalSpacing="3dp"
         android:verticalSpacing="3dp"

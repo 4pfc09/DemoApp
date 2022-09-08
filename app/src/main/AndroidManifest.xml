@@ -18,9 +18,7 @@
             android:exported="false"
             android:label="@string/title_activity_built_in_tabbed"
             android:theme="@style/Theme.DemoApp.NoActionBar" />
-        <activity
-            android:name=".SimpleTabbedActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

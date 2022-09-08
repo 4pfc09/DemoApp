@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToTabbedActivity() {
-        Intent intent = new Intent(this, SimpleTabbedActivity.class);
+        Intent intent = new Intent(this, BuiltInTabbedActivity.class);
         startActivity(intent);
     }
 }

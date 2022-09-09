@@ -51,10 +51,12 @@ public class ContentAdapter extends BaseAdapter {
         return contentList.get(i).getId();
     }
 
+    //https://developer.android.com/reference/android/widget/Adapter#getView(int,%20android.view.View,%20android.view.ViewGroup)
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-
-        view = layoutInflater.inflate(R.layout.fragment_item_grid, null);
+     //   view = layoutInflater.inflate(R.layout.fragment_item_grid, null);
+        https://developer.android.com/reference/android/view/LayoutInflater#inflate(int,%20android.view.ViewGroup)
+        view = layoutInflater.inflate(R.layout.fragment_item_grid, viewGroup, false);
        LinearLayout itemGridHolderLayout = view.findViewById(R.id.itemGridHolderLayout);
        ImageView imgview = view.findViewById(R.id.imgViewItemGrid);
              imgview.setImageResource(

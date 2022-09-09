@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button btnLogin;
     private Button btnRegister;
+    private Button btnSkipLogin;
     private EditText editTextUsername;
     private EditText editTextPass;
 
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
+        btnSkipLogin = findViewById(R.id.btnSkipLoginForTesting);
         editTextUsername = findViewById(R.id.username);
         editTextPass = findViewById(R.id.password);
 
@@ -53,6 +55,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnSkipLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

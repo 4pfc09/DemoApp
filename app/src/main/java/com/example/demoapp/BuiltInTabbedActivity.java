@@ -1,20 +1,17 @@
 package com.example.demoapp;
 
 import android.os.Bundle;
+import android.util.Log;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
-import com.example.demoapp.ui.main.SectionsPagerAdapter;
 import com.example.demoapp.databinding.ActivityBuiltInTabbedBinding;
+import com.example.demoapp.ui.main.SectionsPagerAdapter;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class BuiltInTabbedActivity extends AppCompatActivity {
 
@@ -32,13 +29,17 @@ public class BuiltInTabbedActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = binding.fab;
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        //++
+
+        tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onTabSelected(@NonNull TabLayout.Tab tab) {
+                super.onTabSelected(tab);
+                Log.println(Log.DEBUG, "tabSelected", "El index es: " + tab.getId() + " " + tab.getText());
+                //tab.tetText() resulta en el texto establecido en resources strings
+
+
             }
         });
     }

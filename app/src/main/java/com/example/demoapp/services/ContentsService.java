@@ -24,7 +24,7 @@ public class ContentsService implements IContentsService {
 
         switch (cabinaId) {
             case 1:
-                this.contents.add(new Content(1L, "China", R.drawable.china));
+                this.contents.add(new Content(1L, "China long message caption", R.drawable.china));
                 this.contents.add(new Content(2L, "Dog", R.drawable.dog));
                 this.contents.add(new Content(3L, "MonaLisa", R.drawable.monalisa));
                 this.contents.add(new Content(4L, "The Thinker", R.drawable.the_thinker));

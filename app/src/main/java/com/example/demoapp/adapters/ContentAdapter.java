@@ -1,13 +1,13 @@
 package com.example.demoapp.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
-
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.example.demoapp.R;
 import com.example.demoapp.model.Content;
 import com.example.demoapp.services.ContentsService;
@@ -20,6 +20,8 @@ public class ContentAdapter extends BaseAdapter {
     List<Content> contentList;
     private Context context;
     private int cabinaId;
+    //++
+    private LayoutInflater layoutInflater;
 
 
     public ContentAdapter(){
@@ -29,8 +31,9 @@ public class ContentAdapter extends BaseAdapter {
         contentsService = new ContentsService();
         this.context = context;
         this.cabinaId= cabinaId;
+        this.layoutInflater = LayoutInflater.from(context);
 
-        contentList = contentsService.getContentsById(cabinaId);
+        contentList = contentsService.getContentsById(this.cabinaId);
     }
 
     @Override
@@ -50,12 +53,16 @@ public class ContentAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        ImageView imgview = new ImageView(this.context);
-        imgview.setLayoutParams(new GridView.LayoutParams(300, 500));
-        imgview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imgview.setPadding(10,10,10, 10);
-        imgview.setImageResource(
+
+        view = layoutInflater.inflate(R.layout.fragment_item_grid, null);
+       LinearLayout itemGridHolderLayout = view.findViewById(R.id.itemGridHolderLayout);
+       ImageView imgview = view.findViewById(R.id.imgViewItemGrid);
+             imgview.setImageResource(
                 contentList.get(position).getResourceInt());
-        return imgview;
+        TextView textViewCaption = view.findViewById(R.id.textViewCaption);
+        textViewCaption.setText(contentList.get(position).getCaption());
+        return itemGridHolderLayout;
     }
+
+
 }

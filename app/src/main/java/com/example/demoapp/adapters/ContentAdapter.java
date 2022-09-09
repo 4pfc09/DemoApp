@@ -1,6 +1,7 @@
 package com.example.demoapp.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ContentAdapter extends BaseAdapter {
     private int cabinaId;
     //++
     private LayoutInflater layoutInflater;
+    private  static  String CONTENT_ADAPTER_TAG = "ContentAdapter";
 
 
     public ContentAdapter(){
@@ -58,6 +60,13 @@ public class ContentAdapter extends BaseAdapter {
         https://developer.android.com/reference/android/view/LayoutInflater#inflate(int,%20android.view.ViewGroup)
         view = layoutInflater.inflate(R.layout.fragment_item_grid, viewGroup, false);
        LinearLayout itemGridHolderLayout = view.findViewById(R.id.itemGridHolderLayout);
+      itemGridHolderLayout.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Log.println(Log.DEBUG, CONTENT_ADAPTER_TAG, "Item grid onclick");
+          }
+      });
+
        ImageView imgview = view.findViewById(R.id.imgViewItemGrid);
              imgview.setImageResource(
                 contentList.get(position).getResourceInt());

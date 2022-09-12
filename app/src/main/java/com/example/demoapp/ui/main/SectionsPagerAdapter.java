@@ -1,51 +1,47 @@
 package com.example.demoapp.ui.main;
 
-import android.content.Context;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.demoapp.R;
+import com.example.demoapp.fragments.Fragment1;
+import com.example.demoapp.fragments.Fragment2;
+import com.example.demoapp.fragments.Fragment3;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class SectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentStateAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1,
             R.string.tab_text_2, R.string.tab_text_3};
-    private final Context mContext;
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
-        super(fm);
-        mContext = context;
+
+    public SectionsPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
+    }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        switch (position) {
+            case 0:
+                return new Fragment1();
+            case 1:
+                return new Fragment2();
+            default:
+                return new Fragment3();
+        }
     }
 
     @Override
-    public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        Log.println(Log.DEBUG, "Cabinas_Adapter getItem", String.valueOf(position));
-        Fragment fragment = PlaceholderFragment.newInstance(position + 1);
-
-        return fragment;
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
-    }
-
-    @Override
-    public int getCount() {
-        // Show 2 total pages.
+    public int getItemCount() {
         return TAB_TITLES.length;
     }
 }

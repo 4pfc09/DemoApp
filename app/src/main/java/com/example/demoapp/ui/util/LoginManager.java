@@ -2,14 +2,13 @@ package com.example.demoapp.ui.util;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.EditText;
 
 import com.example.demoapp.R;
 
 public class LoginManager {
 
-    public static String USER_NAME_KEY="USER_NAME_KEY";
+    public static String USER_NAME_KEY = "USER_NAME_KEY";
 
     public static boolean validateUserName(EditText editTextUsername, Context context) {
         boolean isValid = false;

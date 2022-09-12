@@ -1,70 +1,36 @@
 package com.example.demoapp.adapters;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.example.demoapp.R;
-import com.example.demoapp.model.Content;
-import com.example.demoapp.services.ContentsService;
-import com.example.demoapp.services.IContentsService;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.List;
+import com.example.demoapp.fragments.Fragment1;
+import com.example.demoapp.fragments.Fragment2;
+import com.example.demoapp.fragments.Fragment3;
 
-public class ContentAdapter extends BaseAdapter {
-    IContentsService contentsService;
-    List<Content> contentList;
-    private Context context;
-    private int cabinaId;
-    //++
-    private LayoutInflater layoutInflater;
+public class ContentAdapter extends FragmentStateAdapter {
 
-
-    public ContentAdapter(){
-        contentsService = new ContentsService();
+    public ContentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+        super(fragmentManager, lifecycle);
     }
-    public ContentAdapter(Context context, int cabinaId) {
-        contentsService = new ContentsService();
-        this.context = context;
-        this.cabinaId= cabinaId;
-        this.layoutInflater = LayoutInflater.from(context);
 
-        contentList = contentsService.getContentsById(this.cabinaId);
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        switch (position) {
+            case 0:
+                return new Fragment1();
+            case 1:
+                return new Fragment2();
+            default:
+                return new Fragment3();
+        }
     }
 
     @Override
-    public int getCount() {
-        return contentList.size();
+    public int getItemCount() {
+        return 3;
     }
-
-    @Override
-    public Object getItem(int i) {
-        return contentList.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return contentList.get(i).getId();
-    }
-
-    //https://developer.android.com/reference/android/widget/Adapter#getView(int,%20android.view.View,%20android.view.ViewGroup)
-    @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-     //   view = layoutInflater.inflate(R.layout.fragment_item_grid, null);
-        https://developer.android.com/reference/android/view/LayoutInflater#inflate(int,%20android.view.ViewGroup)
-        view = layoutInflater.inflate(R.layout.fragment_item_grid, viewGroup, false);
-       LinearLayout itemGridHolderLayout = view.findViewById(R.id.itemGridHolderLayout);
-       ImageView imgview = view.findViewById(R.id.imgViewItemGrid);
-             imgview.setImageResource(
-                contentList.get(position).getResourceInt());
-        TextView textViewCaption = view.findViewById(R.id.textViewCaption);
-        textViewCaption.setText(contentList.get(position).getCaption());
-        return itemGridHolderLayout;
-    }
-
-
 }

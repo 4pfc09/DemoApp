@@ -37,4 +37,6 @@
     <string name="login_activity_title">Login</string>
     <string name="register_activity_title">Register</string>
     <string name="skipLoginForTesting">Saltar login (solo para testing)</string>
+    <string name="title_activity_new_built_in_tabbed">NewBuiltInTabbed</string>
+    <string name="rosa">Rosa</string>
 </resources>

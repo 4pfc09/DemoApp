@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-           //TODO ...
+            //TODO ...
 
         }
 
@@ -85,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
             editTextUsername.setText(intent.getStringExtra(LoginManager.USER_NAME_KEY));
         }
     }
-
 
 
     private void signIn(String email, String password) {
@@ -103,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                           //TODO: Toast not showing...
+                            //TODO: Toast not showing...
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
@@ -114,17 +113,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void updateUI(FirebaseUser user) {
-        if(user!= null){
+        if (user != null) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }
-        else{
+        } else {
             showToast(this, getString(R.string.authentication_failed));
         }
     }
-
 
 
     private void showToast(Context context, String message) {
@@ -135,9 +131,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void validate() {
 
-        if(   LoginManager.validatePass(editTextPass, this)
+        if (LoginManager.validatePass(editTextPass, this)
                 &&
-               LoginManager.validateUserName(editTextUsername, this)){
+                LoginManager.validateUserName(editTextUsername, this)) {
 
 
             signIn(editTextUsername.getText().toString(), editTextPass.getText().toString());

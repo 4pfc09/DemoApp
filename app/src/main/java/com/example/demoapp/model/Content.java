@@ -1,43 +1,25 @@
 package com.example.demoapp.model;
 
 public class Content {
-    private Long id;
-    private String caption;
-    private int resourceInt;
+    private String text;
 
-    public Content() {
+    private final int imageRoute;
+
+    public Content(String text, int imageRoute) {
+        this.text = text;
+        this.imageRoute = imageRoute;
     }
 
-    public Content(Long id, String caption, int resourceInt) {
-        this.id= id;
-        this.caption = caption;
-        this.resourceInt = resourceInt;
+    public String getText() {
+        return text;
     }
 
-
-
-
-
-    public Long getId() {
-        return id;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getCaption() {
-        return caption;
+    public int getImageRoute() {
+        return imageRoute;
     }
 
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    public int getResourceInt() {
-        return resourceInt;
-    }
-
-    public void setResourceInt(int resourceInt) {
-        this.resourceInt = resourceInt;
-    }
 }

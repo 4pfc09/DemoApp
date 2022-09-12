@@ -1,14 +1,15 @@
 package com.example.demoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnToTabbedView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnToTabbedView = findViewById(R.id.btnToTabs);
         btnToTabbedView.setOnClickListener(a -> goToTabbedActivity());
+
     }
+
 
     private void goToTabbedActivity() {
         Intent intent = new Intent(this, BuiltInTabbedActivity.class);

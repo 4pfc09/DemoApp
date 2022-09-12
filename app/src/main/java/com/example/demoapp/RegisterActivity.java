@@ -1,8 +1,5 @@
 package com.example.demoapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.demoapp.ui.util.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPass = findViewById(R.id.password);
 
 
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-     private void createAccount(String email, String password) {
+    private void createAccount(String email, String password) {
         // [START create_user_with_email]
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -62,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                           updateUI(user);
+                            updateUI(user);
 
 
                         } else {
@@ -78,25 +77,23 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void validate() {
 
-        if(   LoginManager.validatePass(editTextPass, this)
+        if (LoginManager.validatePass(editTextPass, this)
                 &&
-                LoginManager.validateUserName(editTextUsername, this)){
+                LoginManager.validateUserName(editTextUsername, this)) {
 
 
             createAccount(editTextUsername.getText().toString(), editTextPass.getText().toString());
         }
     }
 
-    private void updateUI(FirebaseUser user){
-        if(user!=null) {
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
             Intent intent = new Intent(this, LoginActivity.class);
-            intent.putExtra(LoginManager.USER_NAME_KEY,user.getEmail() );
+            intent.putExtra(LoginManager.USER_NAME_KEY, user.getEmail());
 
             startActivity(intent);
-        }
-        else{
+        } else {
             //TODO: toast is not being displayed, maybe because UI thread is not the authentication thread...
-
 
             Toast toast = Toast.makeText(this, R.string.register_failed, Toast.LENGTH_LONG);
             toast.show();

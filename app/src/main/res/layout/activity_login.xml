@@ -31,10 +31,12 @@ tools:context=".LoginActivity">
         android:layout_marginTop="168dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/password"
@@ -46,6 +48,7 @@ tools:context=".LoginActivity">
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +80,10 @@ tools:context=".LoginActivity">
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="64dp"
-        android:text="@string/action_register"
-
         android:backgroundTint="@color/design_default_color_secondary_variant"
+
+        android:text="@string/action_register"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
